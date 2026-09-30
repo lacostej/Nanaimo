@@ -4,7 +4,9 @@
 
 ##### Enhancements
 
-* None.  
+* Speed up parsing (2.4x-3.8x) and writing (1.2x-2.8x) of ASCII plists,
+  with the largest gains under YJIT.  
+  [Samuel Giddins](https://github.com/segiddins)
 
 ##### Bug Fixes
 

@@ -24,6 +24,8 @@ module Nanaimo
 
       def write_object(object)
         case object
+        when ::String, ::Hash, ::Array, Nanaimo::Object, Symbol
+          super
         when Float, Integer
           write_number(object)
         when Time, Date, DateTime
@@ -113,11 +115,13 @@ module Nanaimo
       def write_dictionary(object)
         object = value_for(object)
         return output << '<dict/>' if object.empty?
-        keys = object.keys.sort_by { |key| value_for(key).to_s }
-        object = keys.each_with_object({}) do |key, hash|
-          hash[value_for(key).to_s] = object[key]
+        stringified = {}
+        object.each { |key, value| stringified[value_for(key).to_s] = value }
+        write_dictionary_start
+        stringified.keys.sort!.each do |key|
+          write_dictionary_key_value_pair(key, stringified[key])
         end
-        super(object)
+        write_dictionary_end
       end
 
       def write_dictionary_start
