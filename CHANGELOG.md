@@ -7,6 +7,7 @@
 * Speed up parsing (2.4x-3.8x) and writing (1.2x-2.8x) of ASCII plists,
   with the largest gains under YJIT.  
   [Samuel Giddins](https://github.com/segiddins)
+  [#68](https://github.com/CocoaPods/Nanaimo/pull/68)  
 
 ##### Bug Fixes
 
@@ -45,6 +46,7 @@
 
 * Write XML plist data on Ruby 3.4+ without depending on the base64 gem.  
   [Samuel Giddins](https://github.com/segiddins)
+  [#68](https://github.com/CocoaPods/Nanaimo/pull/68)  
 
 * Raise a `ParseError` when a dictionary key is not a string, as CoreFoundation
   does; such a plist could be read, but writing it raised `ArgumentError`.  
